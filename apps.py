@@ -1,4 +1,7 @@
 heads_="""
+import pygame
+import random
+import sys
 import time
 class apps:
     #put you code here
@@ -11,8 +14,8 @@ class apps:
         self.x=0
         self.y=0
         self.z=0
-        self.w=0
-        self.h=0
+        self.w=640
+        self.h=480
         self.ends=False
         self.camera=0
         self.enemy=[]
@@ -22,8 +25,10 @@ class apps:
         self.datas=""
         self.fmode="w"
         self.frmode="r"
-
-        
+        self.screens=None
+        self.caption="applications"
+        self.bcolor=(0,0,0) 
+       
     def debugs(self,value):
         #put you code here
         print(value)
@@ -104,6 +109,7 @@ heads__="""
     def mainloop(self):
         #put you code here
         #you can chage list events order
+        clock = pygame.time.Clock()
         appsstart=True
         self.debugs("mainloop")
         while appsstart:
@@ -125,17 +131,34 @@ for n in range(len(gfiles)):
         defs_(filesa,sss)
 
 heads___="""
+            pygame.display.flip()
+            # Limita o FPS
+            clock.tick(60)
+            for event in pygame.event.get():
+                 if event.type == pygame.QUIT:
+                      return False
+                      gamestart=False
+            if self.ends:
+                 break
+
     def setuploop(self):
         #put you code here
         sloop=True
         while sloop:
-            self.mainloop()
+            sloop=self.mainloop()
             
     def main(self):
         #put you code here
+        pygame.init()
+        self.screens=pygame.display.set_mode((self.w,self.h))
+        pygame.display.set_caption(self.caption)
+        self.screens.fill(self.bcolor)
+        pygame.display.flip()
         self.startvars()
         self.startapp()
         self.setuploop()
+        pygame.quit()
+        sys.exit()
 
 
 apps1=apps()
