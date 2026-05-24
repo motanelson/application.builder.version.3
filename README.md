@@ -1,1 +1,1 @@
-application builder python version 3
+bar rectangle graphics
